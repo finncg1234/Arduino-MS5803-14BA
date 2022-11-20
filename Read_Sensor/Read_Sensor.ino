@@ -33,7 +33,7 @@
 
 #include <SPI.h>
 #include <Wire.h>
-#include <MS5803.h>
+#include "MS5803.h"
 
 // Chip Select pin for SPI
 #define SENSOR_CS_PIN 9
@@ -49,12 +49,12 @@ void setup() {
   Serial.begin( 115200 );
   delay(3000);
 
-  // Initalize the sensor which resets the sensor, downloads the needed coeffecients, 
+  // Initalize the sensor which resets the sensor, downloads the needed coeffecients,
   // and does a CRC check on the returned data. This will verify that we are talking to
   // the device and that all is well.
   if ( sensor.initalizeSensor() ) {
     Serial.println( "Sensor CRC check OK." );
-  } 
+  }
   else {
     Serial.println( "Sensor CRC check FAILED! There is something wrong!" );
   }
@@ -74,10 +74,7 @@ void loop() {
   Serial.print(sensor.temperature());
   Serial.println("C");
 
-  //Just to make it easier to read. 
+  //Just to make it easier to read.
   //The sensor can be read as fast as desired.
-  delay(100); 
+  delay(100);
 }
-
-
-
